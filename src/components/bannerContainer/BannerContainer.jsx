@@ -2,11 +2,11 @@ import {Carousel} from 'react-bootstrap';
 import BannerImage from "../bannerImage/BannerImage";
 import banner1 from '../../assets/banners/Banner1.webp';
 import banner2 from '../../assets/banners/Banner2.webp';
-import banner3 from '../../assets/banners/Banner3.webp';
+import banner3 from '../../assets/banners/Banner2.webp';
 
 export default function BannerContainer({...props}) {
     return (
-        <div {...props}>
+        <fragment>
             <Carousel interval={3000} pause={false} fade>
                 <Carousel.Item>
                     <BannerImage imagePath={banner1} bootstrapClass="d-block w-100 h-50"
@@ -25,7 +25,7 @@ export default function BannerContainer({...props}) {
                                  alternativeText="Get 30% discount on your first purchase"/>
                 </Carousel.Item>
             </Carousel>
-        </div>
+        </fragment>
     );
 
 }

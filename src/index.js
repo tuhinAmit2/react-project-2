@@ -9,9 +9,9 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(<React.StrictMode>
     <NavbarContainer/>
     {/* Forwarded Props or Proxy Props to BannerContainer */}
-    <BannerContainer id="bannerContainer"/>
+    <BannerContainer id="bannerContainerx"/>
     <WishListContainer id="wishListContainer"
-        type="menu"
+        type="table"
     />
 </React.StrictMode>);
 
