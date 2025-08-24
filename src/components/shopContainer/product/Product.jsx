@@ -1,8 +1,11 @@
 import './product.css';
+import { CartContext} from "../../navbarContainer/store/shopping-cart-context";
+import {useContext} from "react";
 
 export default function Product({
-                                    id, image, title, price, description, onAddToCart,
+                                    id, image, title, price, description
                                 }) {
+    const {addItemToCart} = useContext(CartContext);
     return (<article className="card">
         <div className="product-content">
             <div>
@@ -12,7 +15,7 @@ export default function Product({
                 <p className="card-text">{description}</p>
             </div>
             <p className='product-actions'>
-                <button onClick={() => onAddToCart(id)}>Add to Cart</button>
+                <button onClick={() => addItemToCart(id)}>Add to Cart</button>
             </p>
         </div>
     </article>);

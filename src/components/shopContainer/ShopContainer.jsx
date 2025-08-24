@@ -5,6 +5,7 @@ import {Table} from "react-bootstrap";
 import NavbarContainer from "../navbarContainer/NavbarContainer";
 import BannerContainer from "../bannerContainer/BannerContainer";
 import Product from "./product/Product";
+import {CartContext} from "../navbarContainer/store/shopping-cart-context";
 
 export default function ShopContainer() {
 
@@ -61,7 +62,12 @@ export default function ShopContainer() {
         });
     }
 
-    return (<>
+    const ctxValue = {
+        items: shoppingCart.items,
+        addItemToCart: handleAddItemToCart
+    }
+
+    return (<CartContext.Provider value={ctxValue}>
         <NavbarContainer cart={shoppingCart}
                          onUpdateCartItemQuantity={handleUpdateCartItemQuantity}/>
         <BannerContainer id="bannerContainerx"/>
@@ -69,10 +75,10 @@ export default function ShopContainer() {
             <tbody>
             <Shop>
                     {DUMMY_PRODUCTS.map((product) => (<td key={product.id} className="card">
-                        <Product {...product} onAddToCart={handleAddItemToCart}/>
+                        <Product {...product}/>
                     </td>))}
             </Shop>
             </tbody>
         </Table>
-    </>);
+    </CartContext.Provider>);
 }
