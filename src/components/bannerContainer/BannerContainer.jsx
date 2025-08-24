@@ -6,7 +6,7 @@ import banner3 from '../../assets/banners/Banner2.webp';
 
 export default function BannerContainer({...props}) {
     return (
-        <fragment>
+        <>
             <Carousel interval={3000} pause={false} fade>
                 <Carousel.Item>
                     <BannerImage imagePath={banner1} bootstrapClass="d-block w-100 h-50"
@@ -25,7 +25,7 @@ export default function BannerContainer({...props}) {
                                  alternativeText="Get 30% discount on your first purchase"/>
                 </Carousel.Item>
             </Carousel>
-        </fragment>
+        </>
     );
 
 }
