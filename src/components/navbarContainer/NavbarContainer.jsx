@@ -1,11 +1,14 @@
 import {Form, FormControl, InputGroup, Nav, Navbar, NavDropdown} from 'react-bootstrap';
 import logo from '../../assets/logo.svg';
 import {useRef} from "react";
-import CartModal from "./CartModal"; // Adjust the path as necessary
+import CartModal from "./CartModal";
+import {useContext} from "react";
+import {CartContext} from '../../store/shopping-cart-context';
 
-function NavbarContainer({ cart, onUpdateCartItemQuantity }) {
+function NavbarContainer() {
     const modal = useRef();
-    const cartQuantity = cart.items.length;
+    const {items} = useContext(CartContext);
+    const quantity = items.length;
 
     function handleOpenCartClick() {
         modal.current.open();
@@ -13,7 +16,7 @@ function NavbarContainer({ cart, onUpdateCartItemQuantity }) {
 
     let modalActions = <button>Close</button>;
 
-    if (cartQuantity > 0) {
+    if (quantity > 0) {
         modalActions = (
             <>
                 <button>Close</button>
@@ -25,8 +28,6 @@ function NavbarContainer({ cart, onUpdateCartItemQuantity }) {
     return (<>
         <CartModal
             ref={modal}
-            cartItems={cart.items}
-            onUpdateCartItemQuantity={onUpdateCartItemQuantity}
             title="Your Cart"
             actions={modalActions}
         />
@@ -55,7 +56,7 @@ function NavbarContainer({ cart, onUpdateCartItemQuantity }) {
                         <NavDropdown.Divider/>
                         <NavDropdown.Item href="/contact">Contact</NavDropdown.Item>
                     </NavDropdown>
-                    <Nav.Item><button class="btn btn-primary" onClick={handleOpenCartClick}>Cart ({cartQuantity})</button></Nav.Item>
+                    <Nav.Item><button className="btn btn-primary" onClick={handleOpenCartClick}>Cart ({quantity})</button></Nav.Item>
                 </Nav>
             </Navbar.Collapse>
         </Navbar>

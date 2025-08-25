@@ -1,5 +1,8 @@
-import {CartContext} from './store/shopping-cart-context';
-export default function Cart({onUpdateItemQuantity}) {
+import {CartContext} from '../../store/shopping-cart-context';
+import {useContext} from "react";
+
+export default function Cart() {
+    const {updateCartItemQuantity} = useContext(CartContext);
 
     return (<CartContext.Consumer>
         {(cartCtx) => {
@@ -19,12 +22,12 @@ export default function Cart({onUpdateItemQuantity}) {
                             </div>
                             <div className="cart-item-actions d-flex align-items-center">
                                 <button className="btn btn-outline-secondary btn-sm me-2"
-                                        onClick={() => onUpdateItemQuantity(item.id, -1)}>
+                                        onClick={() => updateCartItemQuantity(item.id, -1)}>
                                     -
                                 </button>
                                 <span className="px-2">{item.quantity}</span>
                                 <button className="btn btn-outline-secondary btn-sm ms-2"
-                                        onClick={() => onUpdateItemQuantity(item.id, 1)}>
+                                        onClick={() => updateCartItemQuantity(item.id, 1)}>
                                     +
                                 </button>
                             </div>
