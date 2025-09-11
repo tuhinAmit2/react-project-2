@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import Place from "./place/Place";
 import Error from "../errorContainer/Error";
+import { sortPlacesByDistance } from "../loc";
 
 export default function AvailablePlaces() {
     const [isFetching, setIsFetching] = useState(false);
@@ -18,10 +19,27 @@ export default function AvailablePlaces() {
                 }
 
                 const resData = await response.json();
-                setPlaces(resData);
+
+                // get user location and then sort
+                navigator.geolocation.getCurrentPosition(
+                    (position) => {
+                        const sortedPlaces = sortPlacesByDistance(
+                            resData,
+                            position.coords.latitude,
+                            position.coords.longitude
+                        );
+                        setPlaces(sortedPlaces);
+                        setIsFetching(false);
+                    },
+                    (geoError) => {
+                        console.error("Geolocation error:", geoError);
+                        // fallback: just use unsorted data
+                        setPlaces(resData);
+                        setIsFetching(false);
+                    }
+                );
             } catch (err) {
                 setError({ message: err.message });
-            } finally {
                 setIsFetching(false);
             }
         }

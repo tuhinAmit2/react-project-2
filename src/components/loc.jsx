@@ -20,8 +20,10 @@ function calculateDistance(lat1, lng1, lat2, lng2) {
 export function sortPlacesByDistance(places, lat, lon) {
     const sortedPlaces = [...places];
     sortedPlaces.sort((a, b) => {
-        const distanceA = calculateDistance(lat, lon, a.lat, a.lon);
-        const distanceB = calculateDistance(lat, lon, b.lat, b.lon);
+        console.log(a);
+        console.log(b);
+        const distanceA = calculateDistance(lat, lon, a.latitude, a.longitude);
+        const distanceB = calculateDistance(lat, lon, b.latitude, b.longitude);
         return distanceA - distanceB;
     });
     return sortedPlaces;
