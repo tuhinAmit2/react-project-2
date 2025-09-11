@@ -1,8 +1,8 @@
 import AvailablePlaces from "./AvailablePlaces";
 
-export default function PlaceContainer(){
+export default function PlaceContainer() {
     return (<div>
-        Available Places
+        Nearest Hub based on Distance
         <AvailablePlaces/>
-</div>);
+    </div>);
 }
