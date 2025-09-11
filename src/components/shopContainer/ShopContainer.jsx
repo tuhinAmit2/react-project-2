@@ -8,10 +8,9 @@ import {useEffect,useState} from "react";
 
 export default function ShopContainer() {
     const [products, setProducts] = useState([]);
-
     useEffect(() => {
         // Simulate fetching data from an API
-        fetch('http://localhost:8080/api/products')
+        fetch('http://localhost:8080/shopmate')
             .then((response) => {
                 console.log(response);
                 return response.json()
@@ -21,8 +20,6 @@ export default function ShopContainer() {
                 setProducts(resData);
             });
     }, []);
-
-
     return (<CartContextProvider>
         <NavbarContainer/>
         <BannerContainer id="bannerContainerx"/>

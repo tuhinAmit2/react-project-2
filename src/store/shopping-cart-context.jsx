@@ -66,12 +66,15 @@ export default function CartContextProvider({ children }) {
 
     // ✅ Fetch products from backend
     useEffect(() => {
-        fetch("http://localhost:8080/api/products")
-            .then((response) => response.json())
-            .then((resData) => {
-                setProducts(resData);
-            })
-            .catch((err) => console.error("Error fetching products:", err));
+
+        //defining inner function to be able to use async await
+        async function fetchProducts() {
+            const response = await fetch("http://localhost:8080/shopmate");
+            const resData = await response.json();
+            setProducts(resData);
+        }
+
+        fetchProducts();
     }, []);
 
     function handleAddItemToCart(id) {

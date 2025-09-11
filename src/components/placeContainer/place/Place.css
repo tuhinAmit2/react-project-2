@@ -1,0 +1,15 @@
+.place-content{
+  flex: 1;               /* Equal width for all columns */
+  text-align: center;    /* Center text/icons */
+  border: 1px solid #ccc;
+  padding: 58px;
+}
+
+.place-image {
+  width: 200px;
+  height: 200px;
+  border-radius: 8px;
+  object-fit: cover;
+  display: block;
+  margin: 0 auto 7px;
+}
